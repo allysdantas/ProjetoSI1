@@ -1,1 +1,0 @@
-Diretório destinado para a disciplina Sistema da Informação I, contendo o material relacionado ao projeto.
