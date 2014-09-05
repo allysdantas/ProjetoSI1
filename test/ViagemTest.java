@@ -14,29 +14,29 @@ public class ViagemTest {
 
 	private static final String DESCRICAO = "Vamos nos deliciar com a sobra das algarobas que tem na rua";
 	private Usuario allys;
-	private Local algarobas;
+	private Local roliude;
 
 	@Before
 	public void setUp() throws Exception {
 		allys = new Usuario("Allys", "allys@outlook.com.br", "123456");
-		algarobas = new Local("Rua das algarobas", "ao lado do pé de maxixe");
+		roliude = new Local("Brasil", "Paraíba", "Cabaceiras",
+				"Rua Raul Albuquerque Dinca", "Igreja onde João Grilo morreu");
 	}
-	
+
 	@Test
 	public void deveAdicionarParticipanteNaViagemAberta() {
 		fail("Não implementado");
 	}
-	
+
 	@Test
 	public void deveAdicionarParticipanteNaViagemLimitada() {
 		fail("Não implementado");
 	}
-	
 
 	@Test
 	public void naoDeveAceitarOrganizadorInvalido() {
 		try {
-			new Viagem(null, algarobas, Calendar.getInstance(), DESCRICAO,
+			new Viagem(null, roliude, Calendar.getInstance(), DESCRICAO,
 					new ViagemAberta());
 		} catch (Exception e) {
 			assertEquals("Organizador não pode ser nulo", e.getMessage());
@@ -46,14 +46,14 @@ public class ViagemTest {
 	@Test
 	public void naoDeveAceitarDescricaoInvalida() {
 		try {
-			new Viagem(allys, algarobas, Calendar.getInstance(), null,
+			new Viagem(allys, roliude, Calendar.getInstance(), null,
 					new ViagemAberta());
 		} catch (Exception e) {
 			assertEquals("Descrição não pode ser nula", e.getMessage());
 		}
 
 		try {
-			new Viagem(allys, algarobas, Calendar.getInstance(), "",
+			new Viagem(allys, roliude, Calendar.getInstance(), "",
 					new ViagemAberta());
 		} catch (Exception e) {
 			assertEquals("Descrição não pode ser vazia", e.getMessage());
@@ -66,7 +66,7 @@ public class ViagemTest {
 		}
 
 		try {
-			new Viagem(allys, algarobas, Calendar.getInstance(),
+			new Viagem(allys, roliude, Calendar.getInstance(),
 					descricaoLonga, new ViagemAberta());
 		} catch (Exception e) {
 			assertEquals("Descrição longa", e.getMessage());
@@ -86,7 +86,7 @@ public class ViagemTest {
 	@Test
 	public void naoDeveAceitarDataInvalida() {
 		try {
-			new Viagem(allys, algarobas, null, DESCRICAO, new ViagemAberta());
+			new Viagem(allys, roliude, null, DESCRICAO, new ViagemAberta());
 		} catch (Exception e) {
 			assertEquals("Data não pode ser nula", e.getMessage());
 		}
@@ -95,12 +95,11 @@ public class ViagemTest {
 	@Test
 	public void naoDeveAceitarTipoInvalido() {
 		try {
-			new Viagem(allys, algarobas, Calendar.getInstance(), DESCRICAO,
+			new Viagem(allys, roliude, Calendar.getInstance(), DESCRICAO,
 					null);
 		} catch (Exception e) {
 			assertEquals("Tipo de viagem não pode ser nulo", e.getMessage());
 		}
 	}
-	
 
 }
