@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class ViagemTest {
 
-	private static final String DESCRICAO = "Vamos nos deliciar com a sobra das algarobas que tem na rua";
+	private static final String DESCRICAO = "Vamos visitar a igreja onde foi gravadas varias cenas do filma o Auto da Compadecida";
 	private Usuario allys;
 	private Local roliude;
 
@@ -66,8 +66,8 @@ public class ViagemTest {
 		}
 
 		try {
-			new Viagem(allys, roliude, Calendar.getInstance(),
-					descricaoLonga, new ViagemAberta());
+			new Viagem(allys, roliude, Calendar.getInstance(), descricaoLonga,
+					new ViagemAberta());
 		} catch (Exception e) {
 			assertEquals("Descrição longa", e.getMessage());
 		}
@@ -95,8 +95,7 @@ public class ViagemTest {
 	@Test
 	public void naoDeveAceitarTipoInvalido() {
 		try {
-			new Viagem(allys, roliude, Calendar.getInstance(), DESCRICAO,
-					null);
+			new Viagem(allys, roliude, Calendar.getInstance(), DESCRICAO, null);
 		} catch (Exception e) {
 			assertEquals("Tipo de viagem não pode ser nulo", e.getMessage());
 		}
