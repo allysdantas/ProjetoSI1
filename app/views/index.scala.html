@@ -1,7 +1,75 @@
-@(message: String)
+@(message: String) @main("Viagens Sem Fronteiras") {
 
-@main("Welcome to Play") {
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 
-    @play20.welcome(message, style = "Java")
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Viagens CsF</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Inicio</a></li>
+				<li><a href="#about">Sobre</a></li>
+				<li><a href="#contact">Contato</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Tipos de Viagem <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#">Todas</a></li>
+						<li><a href="#">Viagens Abertas</a></li>
+						<li><a href="#">Viagens Limitadas</a></li>
+					</ul></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="./">Sair</a></li>
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+	</div>
+
+</div>
+<div class="container">
+
+	<div class="row">
+		<!-- Informacoes do viajante -->
+		<div class="col-md-4">
+			<br /> <br /> <br /> <br />
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Informações do Viajante</h3>
+				</div>
+				<div class="panel-body">
+					<p>
+						<label>Nome:</label>
+					</p>
+					<p>
+						<label>Email:</label>
+					</p>
+				</div>
+			</div>
+			<button type="button" class="btn btn-primary btn-lg btn-block">Criar
+				nova Viagem</button>
+		</div>
+
+
+		<!-- Lista de viagens -->
+		<div class="col-md-8">
+			<br /> <br /> <br /> <br />
+			<div class="list-group">
+			
+				<a href="#" class="list-group-item">
+					<h4 class="list-group-item-heading">Nome da Viagem</h4>
+					<p class="list-group-item-text">Descrição.</p>
+				</a>
+				
+			</div>
+		</div>
+	</div>
+</div>
 
 }
