@@ -17,15 +17,9 @@
 				<li class="active"><a href="#">Inicio</a></li>
 				<li><a href="#about">Sobre</a></li>
 				<li><a href="#contact">Contato</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Tipos de Viagem <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="#">Todas</a></li>
-						<li><a href="#">Viagens Abertas</a></li>
-						<li><a href="#">Viagens Limitadas</a></li>
-					</ul></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+
 				<li><a href="./">Sair</a></li>
 			</ul>
 		</div>
@@ -39,9 +33,9 @@
 		<!-- Informacoes do viajante -->
 		<div class="col-md-4">
 			<br /> <br /> <br /> <br />
-			<div class="panel panel-primary">
+			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title">Informações do Viajante</h3>
+					<h3 class="panel-title">InformaÃ§Ãµes do Viajante</h3>
 				</div>
 				<div class="panel-body">
 					<p>
@@ -52,7 +46,7 @@
 					</p>
 				</div>
 			</div>
-			<button type="button" class="btn btn-primary btn-lg btn-block">Criar
+			<button type="button" class="btn btn-info btn-lg btn-block">Criar
 				nova Viagem</button>
 		</div>
 
@@ -60,16 +54,32 @@
 		<!-- Lista de viagens -->
 		<div class="col-md-8">
 			<br /> <br /> <br /> <br />
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+
+						<button type="button" class="btn btn-info dropdown-toggle"
+							data-toggle="dropdown">
+							Filtrar Viagens <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Todas</a></li>
+							<li><a href="#">Viagens Abertas</a></li>
+							<li><a href="#">Viagens Limitadas</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
 			<div class="list-group">
-			
 				<a href="#" class="list-group-item">
 					<h4 class="list-group-item-heading">Nome da Viagem</h4>
-					<p class="list-group-item-text">Descrição.</p>
+					<p class="list-group-item-text">DescriÃ§Ã£o.</p>
 				</a>
-				
 			</div>
 		</div>
 	</div>
+</div>
+</div>
 </div>
 
 }
