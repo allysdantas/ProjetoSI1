@@ -1,0 +1,96 @@
+@(form: Form[Usuario], mensagemErro: String, mensagem: String) 
+
+@main("Viagens Sem Fronteiras") {
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Viagens CsF</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+
+				<!-- Campos Login -->
+
+				<li>
+					<form class="navbar-form" role="form">
+						<div class="form-group">
+							<input type="email" class="form-control" id="emailLogin"
+								placeholder="Email">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" id="senhaLogin"
+								placeholder="Senha">
+						</div>
+						<button type="submit" class="btn btn-primary">Entrar</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="container">
+	<br /> <br /> <br /> <br />
+	
+	<div class="row">
+		
+		<div class="col-md-3">
+			<!-- Vazio -->
+		</div>
+		
+		<div class="col-md-6">	
+			@if(mensagemErro != null && !mensagemErro.trim().equals("")) {
+			<div class="alert alert-danger">
+				<p>@(mensagemErro)</p>
+			</div>
+			} 
+			
+			@if(mensagem != null && !mensagem.trim().equals("")) {
+			<div class="alert">
+				<p>@(mensagem)</p>
+			</div>
+			}
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">Ainda não tem conta? Cadastre-se</div>
+				<div class="panel-body">
+					<form role="form">
+						<div class="form-group">
+							<input type="text" class="form-control" id="nomeRegistro"
+								placeholder="Digite seu nome">
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" id="emailRegistro"
+								placeholder="Digite seu email">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" id="senhaRegistro"
+								placeholder="Digite sua senha">
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control"
+								id="confirmaSenhaRegistro" placeholder="Confirme sua senha">
+						</div>
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-3">
+			<!-- Vazio -->
+		</div>
+		
+	</div>
+</div>
+
+
+}
