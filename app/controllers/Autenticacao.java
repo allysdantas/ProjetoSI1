@@ -33,7 +33,7 @@ public class Autenticacao extends Controller {
 	}
 
 	@Transactional
-	public static Result authenticate() {
+	public static Result autenticar() {
 
 		Form<Usuario> form = usuarioForm.bindFromRequest();
 

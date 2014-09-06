@@ -8,7 +8,7 @@ GET    /logout         controllers.Autenticacao.logout()
 
 # Login
 GET    /               controllers.Autenticacao.show()
-POST   /               controllers.Autenticacao.authenticate()
+POST   /               controllers.Autenticacao.autenticar()
 
 # Registro
 POST   /               controllers.Autenticacao.registrar()
