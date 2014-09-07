@@ -19,17 +19,22 @@ public class Autenticacao extends Controller {
 			.bindFromRequest();
 
 	@Transactional
-	public static Result show() {
+	public static Result showLogin() {
 		if (session().get("user") != null) {
 			return redirect(routes.Application.index());
 		}
-		return okSucesso("");
+		return okSucessoLogin("");
+	}
+
+	@Transactional
+	public static Result showCadastro() {
+		return okSucessoCadastro("");
 	}
 
 	@Transactional
 	public static Result logout() {
 		session().clear();
-		return show();
+		return showLogin();
 	}
 
 	@Transactional
@@ -37,11 +42,11 @@ public class Autenticacao extends Controller {
 
 		Form<Usuario> form = usuarioForm.bindFromRequest();
 
-		String email = form.field("emailLogin").value();
-		String senha = form.field("senhaLogin").value();
+		String email = form.field("email").value();
+		String senha = form.field("senha").value();
 
 		if (isDadosInvalidosLogin(email, senha)) {
-			return okErro("Email ou senha inválidos");
+			return okErroLogin("Email ou senha inválidos");
 		} else {
 			Usuario user = (Usuario) dao.findByAttributeName("Usuario",
 					"email", email).get(0);
@@ -67,17 +72,17 @@ public class Autenticacao extends Controller {
 	}
 
 	@Transactional
-	public static Result registrar() {
+	public static Result cadastrar() {
 
 		Form<Usuario> form = usuarioForm.bindFromRequest();
 
-		String nome = form.field("nomeRegistro").value();
-		String email = form.field("emailRegistro").value();
-		String senha = form.field("senhaRegistro").value();
-		String confirmaSenha = form.field("confirmaSenhaRegistro").value();
+		String nome = form.field("nome").value();
+		String email = form.field("email").value();
+		String senha = form.field("senha").value();
+		String confirmaSenha = form.field("confirmaSenha").value();
 
 		if (!senha.equals(confirmaSenha)) {
-			return okErro("Senhas não são correspondentes");
+			return okErroCadastro("Senhas não são correspondentes");
 		}
 
 		Usuario user = null;
@@ -85,26 +90,36 @@ public class Autenticacao extends Controller {
 		try {
 			user = new Usuario(nome, email, senha);
 		} catch (Exception e) {
-			return okErro(e.getMessage());
+			return okErroCadastro(e.getMessage());
 		}
 
 		if (validacaoEmail(email)) {
-			return okErro("Email já está em uso");
+			return okErroCadastro("Email já estã em uso");
 		}
 
 		Application.salvaObjeto(user);
-		return okSucesso("Cadastrado com sucesso");
+		return okSucessoLogin("Cadastrado com sucesso");
 
 	}
 
 	@Transactional
-	public static Result okErro(String mensagem) {
-		return ok(views.html.autenticacao.render(usuarioForm, mensagem, ""));
+	public static Result okErroLogin(String mensagem) {
+		return ok(views.html.login.render(usuarioForm, mensagem, ""));
 	}
 
 	@Transactional
-	public static Result okSucesso(String mensagem) {
-		return ok(views.html.autenticacao.render(usuarioForm, "", mensagem));
+	public static Result okErroCadastro(String mensagem) {
+		return ok(views.html.cadastro.render(usuarioForm, mensagem, ""));
+	}
+
+	@Transactional
+	public static Result okSucessoLogin(String mensagem) {
+		return ok(views.html.login.render(usuarioForm, "", mensagem));
+	}
+
+	@Transactional
+	public static Result okSucessoCadastro(String mensagem) {
+		return ok(views.html.cadastro.render(usuarioForm, "", mensagem));
 	}
 
 	private static boolean validacaoEmail(String email) {

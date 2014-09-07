@@ -1,0 +1,97 @@
+@(form: Form[Usuario], mensagemErro: String, mensagem: String)
+
+<html>
+<head>
+	<title>Viagens Sem Limites</title>
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-theme.min.css")">
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/font-awesome.min.css")">
+	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-notify.css")">
+	<script src="@routes.Assets.at("javascripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.at("javascripts/bootstrap-notify.js")" type="text/javascript"></script>
+	<body background="@routes.Assets.at("images/fundo.png")">
+	</head>
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Viagens CsF</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#about">Sobre</a></li>
+					<li><a href="#contact">Contato</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<p class="navbar-text">Já possui cadastro?<a class="btn btn-info" href="/login">Logar</a></p>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<br /> <br /> <br /> <br />
+		
+		<div class="row">
+			
+			<div class="col-md-3">
+				<!-- Vazio -->
+			</div>
+			
+			<div class="col-md-6">	
+				@if(mensagemErro != null && !mensagemErro.trim().equals("")) {
+				<div class="alert alert-danger">
+					<p>@(mensagemErro)</p>
+				</div>
+			} 
+			
+			@if(mensagem != null && !mensagem.trim().equals("")) {
+			<div class="alert alert-success">
+				<p>@(mensagem)</p>
+			</div>
+		}
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">Cadastre-se aqui</div>
+			<div class="panel-body">
+				@helper.form(routes.Autenticacao.cadastrar) {
+				<form role="form">
+					<div class="form-group">
+						<input type="text" class="form-control" name="nome"
+						value='@form("nome").value' placeholder="Digite seu nome">
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" name="email"
+						value='@form("email").value' placeholder="Digite seu email">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="senha"
+						placeholder="Digite sua senha">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="confirmaSenha"
+						placeholder="Confirme sua senha">
+					</div>
+					
+					<button type="submit" class="btn btn-primary">Cadastrar</button>
+				</form>
+			}
+		</div>
+	</div>
+</div>
+
+<div class="col-md-3">
+	<!-- Vazio -->
+</div>
+
+</div>
+</div>
+</body>
+</html>
