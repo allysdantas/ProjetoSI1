@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.List;
-
 import models.Usuario;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
@@ -13,9 +11,10 @@ public class Application extends Controller {
 
 	private static GenericDAO dao = new GenericDAOImpl();
 
+	@Transactional
 	public static Result index() {
 		if (session().get("user") == null) {
-			return redirect(routes.Autenticacao.show());
+			return redirect(routes.Autenticacao.showLogin());
 		}
 		
 		Usuario user = new Usuario();
