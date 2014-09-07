@@ -3,6 +3,7 @@
 <html>
 <head>
 	<title>Viagens Sem Fronteiras</title>
+	<meta charset="utf-8">
 	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-theme.min.css")">
 	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
 	<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/font-awesome.min.css")">
@@ -28,8 +29,10 @@
 						<li><a href="#about">Sobre</a></li>
 						<li><a href="#contact">Contato</a></li>
 					</ul>
-					<ul class="nav navbar-nav navbar-right"><li>
-						<p class="navbar-text">Ainda não possui cadastro?<a class="btn btn-info" href="/cadastro">Cadastrar</a></p>
+					<ul class="nav navbar-nav navbar-right">
+					<li>
+						<b class="navbar-text">Ainda não possui cadastro?</b>
+						<button class="btn btn-info navbar-btn" onclick="location.href='/cadastro'">Cadastrar</button>
 					</li>
 				</ul>
 			</div>
