@@ -27,7 +27,19 @@ public class Application extends Controller {
 		}
 		return ok(views.html.index.render(user, ""));
 	}
-
+	
+	@Transactional
+	public static Result showContato() {
+		return ok(views.html.contato.render());
+		
+	}
+	
+	@Transactional
+	public static Result showSobre() {
+		return ok(views.html.sobre.render());
+		
+	}
+	
 	@Transactional
 	protected static void salvaObjeto(Object obj) {
 		dao.persist(obj);
