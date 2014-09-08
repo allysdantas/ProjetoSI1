@@ -1,0 +1,1 @@
+web: target/universal/stage/bin/projetosi1 -Dhttp.port=5432 -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=postgres://lvkdmapzfpcpvf:Z7TMMHbIyHnAf6imDbQ7XLCgc0@ec2-23-23-183-5.compute-1.amazonaws.com:5432/d3824rheqnt3sn -Djpa.default=postgrePersistenceUnit
