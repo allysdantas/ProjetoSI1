@@ -2,6 +2,9 @@
 
 @main("Viagens Sem Fronteiras") {
 
+@modalCriarViagem()
+@modalParticipar()
+
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 
 	<div class="container">
@@ -72,7 +75,7 @@
 				</ul>
 			</div>
 			<div class="list-group">
-				<a href="#" class="list-group-item">
+				<a href="#" class="list-group-item" data-toggle="modal" data-target="#modalParticipar">
 					<h4 class="list-group-item-heading">Nome da Viagem</h4>
 					<p class="list-group-item-text">Descrição.</p>
 				</a>
