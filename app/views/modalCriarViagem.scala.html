@@ -1,19 +1,59 @@
 <!-- Modal -->
 
 <div class="modal fade" id="modalCriarViagem">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Criando viagem</h4>
-      </div>
-      <div class="modal-body">
-        <p>One fine body&hellip;</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Criar</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title">Criando viagem</h4>
+			</div>
+			<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<label>País</label> <input
+							type="text" class="form-control" id="pais"
+							placeholder="Digite o país">
+					</div>
+					<div class="form-group">
+						<label>Estado</label> <input
+							type="text" class="form-control" id="estado"
+							placeholder="Digite o estado">
+					</div>
+					<div class="form-group">
+						<label>Cidade</label> <input
+							type="text" class="form-control" id="cidade"
+							placeholder="Digite a cidade">
+					</div>
+					<div class="form-group">
+						<label>Endereço</label> <input
+							type="text" class="form-control" id="endereco"
+							placeholder="Digite o endereço">
+					</div>
+					<div class="form-group">
+						<label>Referência</label> <input
+							type="text" class="form-control" id="referencia"
+							placeholder="Digite uma referência">
+					</div>
+					<div class="form-group">
+						<label>Data</label> <input
+							type="date" class="form-control" id="data">
+					</div>
+					<div class="form-group">
+						<label>Descrição</label> <input
+							type="text" class="form-control" id="descrição"
+							placeholder="Digite a descrição da viagem">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary">Criar</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
