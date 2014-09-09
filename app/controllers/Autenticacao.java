@@ -94,7 +94,7 @@ public class Autenticacao extends Controller {
 		}
 
 		if (validacaoEmail(email)) {
-			return okErroCadastro("Email já estã em uso");
+			return okErroCadastro("Email já está em uso");
 		}
 
 		Application.salvaObjeto(user);
