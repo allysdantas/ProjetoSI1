@@ -7,43 +7,64 @@
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title">Criando viagem</h4>
+				<h4 class="modal-title">Criando Viagem</h4>
 			</div>
 			<div class="modal-body">
-				<form role="form">
+				<form class="form-horizontal" role="form">
 					<div class="form-group">
-						<label>País</label> <input
-							type="text" class="form-control" id="pais"
-							placeholder="Digite o país">
+						<label class="col-sm-2 control-label">PaÃ­s</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="pais">
+						</div>
 					</div>
 					<div class="form-group">
-						<label>Estado</label> <input
-							type="text" class="form-control" id="estado"
-							placeholder="Digite o estado">
+						<label class="col-sm-2 control-label">Estado</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="estado">
+						</div>
 					</div>
 					<div class="form-group">
-						<label>Cidade</label> <input
-							type="text" class="form-control" id="cidade"
-							placeholder="Digite a cidade">
+						<label class="col-sm-2 control-label">Cidade</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="cidade">
+						</div>
 					</div>
 					<div class="form-group">
-						<label>Endereço</label> <input
-							type="text" class="form-control" id="endereco"
-							placeholder="Digite o endereço">
+						<label class="col-sm-2 control-label">EndereÃ§o</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="endereco">
+						</div>
 					</div>
 					<div class="form-group">
-						<label>Referência</label> <input
-							type="text" class="form-control" id="referencia"
-							placeholder="Digite uma referência">
+						<label class="col-sm-2 control-label">ReferÃªncia</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="referencia"
+								placeholder="Ex. Proximo ao parque de diversÃµes">
+						</div>
 					</div>
 					<div class="form-group">
-						<label>Data</label> <input
-							type="date" class="form-control" id="data">
+						<label class="col-sm-2 control-label">Data</label>
+						<div class="col-sm-10">
+							<input type="date" class="form-control" id="data">
+						</div>
 					</div>
 					<div class="form-group">
-						<label>Descrição</label> <input
-							type="text" class="form-control" id="descrição"
-							placeholder="Digite a descrição da viagem">
+						<label class="col-sm-2 control-label">DescriÃ§Ã£o</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="descricao"
+								placeholder="Digite uma breve descriÃ§Ã£o de como serÃ¡ a viagem"></textarea>
+							<div class="col-sm-10"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Tipo</label>
+						<div class="col-sm-10">
+							<label class="radio-inline"> <input type="radio"
+								name="aberta" id="aberta" value="aberta"> Aberta
+							</label> <label class="radio-inline"> <input type="radio"
+								name="limitada" id="limitada" value="limitada"> Limitada
+							</label>
+						</div>
 					</div>
 				</form>
 			</div>
