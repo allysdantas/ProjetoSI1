@@ -82,7 +82,7 @@ public class Autenticacao extends Controller {
 		String confirmaSenha = form.field("confirmaSenha").value();
 
 		if (!senha.equals(confirmaSenha)) {
-			return okErroCadastro("Senhas não são correspondentes");
+			return okErroCadastro("Senhas não correspondem");
 		}
 
 		Usuario user = null;
