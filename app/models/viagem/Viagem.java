@@ -77,6 +77,13 @@ public class Viagem {
 	public Calendar getData() {
 		return data;
 	}
+	
+	public String dataDaViagem() {
+		String data = "" + this.data.get(Calendar.DAY_OF_MONTH)+"/"+ this.data.get(Calendar.MONTH)+"/"+this.data.get(Calendar.YEAR);
+		
+		
+		return data;
+	}
 
 	public void setData(Calendar data) throws Exception {
 		isDataValida(data);
@@ -166,6 +173,14 @@ public class Viagem {
 			throw new Exception("Local não pode ser nulo");
 		}
 		this.local = local;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

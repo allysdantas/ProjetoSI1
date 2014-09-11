@@ -70,17 +70,37 @@
         <div class="list-group">
         @for(viagem <- viagens) {
           @if(viagem.isParticipante(user)){
-          <a class="list-group-item active" data-toggle="modal"
-          data-target="#modalViagem">
-          <h4 class="list-group-item-heading">@viagem.getLocal().getPais()</h4>
-          <p class="list-group-item-text">@viagem.getDescricao()</p>
-      </a>
+          <a class="list-group-item active clica-viagem" >
+          <h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4>
+          <p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem()</p>
+     		<div class="viagem-info">
+				<p>@viagem.getLocal().getPais()</p>
+				<p>@viagem.getLocal().getEstado()</p>
+				<p>@viagem.getLocal().getCidade()</p>
+				<p>@viagem.getLocal().getEndereco()</p>
+				<p>@viagem.getLocal().getReferencia()</p>
+				<p>@viagem.dataDaViagem()</p>
+				<p>@viagem.getDescricao()</p>
+				<p>@viagem.getTipo()</p>
+			</div>
+     	 </a>
+      	
       }else {
-      <a class="list-group-item" data-toggle="modal"
-          data-target="#modalViagem">
-          <h4 class="list-group-item-heading">@viagem.getLocal().getPais()</h4>
-          <p class="list-group-item-text">@viagem.getDescricao()</p>
-          </a>
+      <a class="list-group-item clica-viagem" >
+          <h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4>
+          <p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem()</p>
+	 		<div class="viagem-info">
+				<p>@viagem.getLocal().getPais()</p>
+				<p>@viagem.getLocal().getEstado()</p>
+				<p>@viagem.getLocal().getCidade()</p>
+				<p>@viagem.getLocal().getEndereco()</p>
+				<p>@viagem.getLocal().getReferencia()</p>
+				<p>@viagem.dataDaViagem()</p>
+				<p>@viagem.getDescricao()</p>
+				<p>@viagem.getTipo()</p>
+			</div>
+    
+      </a>
       }
       }
   </div>
@@ -88,4 +108,15 @@
 </div>
 </div>
 
-}
+<script>
+	$(function(){
+		$(".viagem-info").hide();
+		$(".clica-viagem").click(function(){
+			var info = $(this).find(".viagem-info");
+			$("#modalViagem").data("viagem", info);
+			$("#modalViagem").modal("show");
+		});		
+	});
+</script>
+
+}	

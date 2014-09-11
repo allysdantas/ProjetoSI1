@@ -1,6 +1,6 @@
-<!-- Modal -->
 
-<div class="modal fade" id="modalViagem">
+<!-- Modal -->
+<div class="modal fade" id="modalViagem" data-viagem="">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -11,7 +11,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-4 viagem-modal-info">
 						<p>
 							<label>País: </label>
 						</p>
@@ -51,4 +51,17 @@
 	</div>
 	<!-- /.modal-dialog -->
 </div>
+<script>
+$(function(){
+	$("#modalViagem").on("show.bs.modal", function(){
+		var viagem = $("#modalViagem").data("viagem");
+		@for(i <- 1 to 8) {
+			$(this).find(".viagem-modal-info p:nth-child(@i)").append(viagem.find("p:nth-child(@i)").text());
+		}
+		//$(this).find(".viagem-info p:nth-child(1)").append("oi");
+	});
+	
+});
+</script>
+
 <!-- /.modal -->
