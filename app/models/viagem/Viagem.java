@@ -31,10 +31,9 @@ public class Viagem {
 
 	@OneToOne
 	private Usuario organizador;
-	
+
 	@OneToMany
 	private List<Usuario> participantes;
-	
 
 	public Viagem() {
 		participantes = new ArrayList<Usuario>();
@@ -47,18 +46,23 @@ public class Viagem {
 		isLocalValido(local);
 		isDataValida(data);
 		isDescricaoValida(descricao);
-		isTipoDeViagemValido(tipo);		
+		isTipoDeViagemValido(tipo);
 	}
 
 	public List<Usuario> getParticipantes() {
 		return Collections.unmodifiableList(participantes);
 	}
-	
+
+	protected List<Usuario> getListaParticipantes() {
+		return participantes;
+	}
+
 	public boolean isParticipante(Usuario usuario) {
 		return participantes.contains(usuario);
 	}
-	
-	public void cadastraParticipante(Usuario participante, String codigoDeAcesso) throws Exception {
+
+	public void cadastraParticipante(Usuario participante, String codigoDeAcesso)
+			throws Exception {
 		this.tipo.cadastrar(participante, codigoDeAcesso, this);
 	}
 
@@ -77,11 +81,12 @@ public class Viagem {
 	public Calendar getData() {
 		return data;
 	}
-	
+
 	public String dataDaViagem() {
-		String data = "" + this.data.get(Calendar.DAY_OF_MONTH)+"/"+ this.data.get(Calendar.MONTH)+"/"+this.data.get(Calendar.YEAR);
-		
-		
+		String data = "" + this.data.get(Calendar.DAY_OF_MONTH) + "/"
+				+ this.data.get(Calendar.MONTH) + "/"
+				+ this.data.get(Calendar.YEAR);
+
 		return data;
 	}
 

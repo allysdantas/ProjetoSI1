@@ -10,10 +10,9 @@ public class ViagemAberta extends TipoDeViagem {
 	@Override
 	public void cadastrar(Usuario usuario, String codigoDeAcesso, Viagem viagem)
 			throws Exception {
-		// TODO Auto-generated method stub
-
+		viagem.getListaParticipantes().add(usuario);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Aberta";
