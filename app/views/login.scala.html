@@ -65,10 +65,10 @@
 				@helper.form(routes.Autenticacao.autenticar) {
 				<form role="form">
 					<div class="form-group">
-						<input type="email" class="form-control" name="email" value='@form("email").value' placeholder="Digite seu email">
+						<input type="email" class="form-control" name="email" value='@form("email").value' placeholder="Digite seu email" required>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" name="senha" placeholder="Digite sua senha">
+						<input type="password" class="form-control" name="senha" placeholder="Digite sua senha" required>
 					</div>
 					<button type="submit" class="btn btn-primary">Entrar</button>
 				</form>

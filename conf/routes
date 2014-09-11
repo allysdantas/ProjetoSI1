@@ -6,6 +6,10 @@
 GET    /               controllers.Application.index()
 GET    /logout         controllers.Autenticacao.logout()
 
+# Viagem
+GET    /viagem         controllers.Application.index()
+POST   /viagem         controllers.Application.criarViagem()
+
 # Login
 GET    /login          controllers.Autenticacao.showLogin()
 POST   /login          controllers.Autenticacao.autenticar()

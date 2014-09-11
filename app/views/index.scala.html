@@ -1,4 +1,4 @@
-@(user: Usuario, message: String) @main("Viagens Sem Fronteiras") {
+@(user: Usuario, mensagem: String) @main("Viagens Sem Fronteiras") {
 
 @modalCriarViagem() @modalMaisInformacoes() @modalParticipar()
 
@@ -54,6 +54,12 @@
 			<button type="button" class="btn btn-info btn-lg btn-block"
 				data-toggle="modal" data-target="#modalCriarViagem">Criar
 				nova Viagem</button>
+			@if(mensagem != null && !mensagem.trim().equals("")) {
+				<br />
+				<div class="alert alert-danger">
+					<p>@(mensagem)</p>
+				</div>
+			}
 		</div>
 
 		<!-- Lista de viagens -->
