@@ -13,5 +13,10 @@ public class ViagemAberta extends TipoDeViagem {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public String toString() {
+		return "Aberta";
+	}
 
 }

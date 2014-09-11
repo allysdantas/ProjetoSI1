@@ -26,6 +26,11 @@ public class ViagemLimitada extends TipoDeViagem {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public String toString() {
+		return "Limitada";
+	}
 
 	private void isCodigoValido(String codigo) throws Exception {
 		if (codigo == null) {
