@@ -92,6 +92,10 @@ public class Application extends Controller {
 		} catch (Exception e) {
 			return okErroCriarViagem(organizador, e.getMessage());
 		}
+		
+		salvaObjeto(local);
+		salvaObjeto(tipoDeViagem);
+		salvaObjeto(viagem);
 
 		return index();
 	}
