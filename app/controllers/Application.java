@@ -40,7 +40,7 @@ public class Application extends Controller {
 						session().get("user")).get(0);
 			}
 		}
-		return ok(views.html.index.render(user, ""));
+		return ok(views.html.index.render(user, getViagens(), ""));
 	}
 
 	@Transactional
@@ -51,7 +51,7 @@ public class Application extends Controller {
 
 	@Transactional
 	public static Result okErroCriarViagem(Usuario usuario, String mensagem) {
-		return ok(views.html.index.render(usuario, mensagem));
+		return ok(views.html.index.render(usuario, getViagens(), mensagem));
 	}
 
 	@Transactional
@@ -92,7 +92,7 @@ public class Application extends Controller {
 		} catch (Exception e) {
 			return okErroCriarViagem(organizador, e.getMessage());
 		}
-		
+
 		salvaObjeto(local);
 		salvaObjeto(tipoDeViagem);
 		salvaObjeto(viagem);
@@ -119,5 +119,13 @@ public class Application extends Controller {
 		dao.persist(obj);
 		dao.merge(obj);
 		dao.flush();
+	}
+
+	private static List<Viagem> getViagens() {
+		List<Viagem> viagens = dao.findAllByClassName("Viagem");
+		if (viagens == null) {
+			viagens = new ArrayList<Viagem>();
+		}
+		return viagens;
 	}
 }

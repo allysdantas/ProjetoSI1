@@ -54,6 +54,10 @@ public class Viagem {
 		return Collections.unmodifiableList(participantes);
 	}
 	
+	public boolean isParticipante(Usuario usuario) {
+		return participantes.contains(usuario);
+	}
+	
 	public void cadastraParticipante(Usuario participante, String codigoDeAcesso) throws Exception {
 		this.tipo.cadastrar(participante, codigoDeAcesso, this);
 	}
