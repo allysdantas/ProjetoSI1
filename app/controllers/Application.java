@@ -47,32 +47,32 @@ public class Application extends Controller {
 		return ok(views.html.viagemInfo.render(getUsuarioLogado(),
 				getViagem(idLong), ""));
 	}
-	
+
 	@Transactional
-	public static Result okErroCadastrarParticipante(Long idLong, String mensagem) {
-		return ok(views.html.viagemInfo.render(getUsuarioLogado(),
-				getViagem(idLong), ""));
+	public static Result okErroCadastrarParticipante(Viagem viagem,
+			String mensagem) {
+		return ok(views.html.viagemInfo.render(getUsuarioLogado(), viagem, ""));
 	}
 
 	@Transactional
-	public static Result participarDaViagem(String id) {
-
-		long idLong = Long.parseLong(id);
-
+	public static Result participarDaViagem() {
+		
 		Form<Viagem> form = viagemForm.bindFromRequest();
 		String codigoDeAcesso = form.field("codigo").value();
+		String idViagem = form.field("id-viagem").value();
+
+		long id = Long.parseLong(idViagem);
+		Viagem v = getViagem(id);
 
 		try {
-			getViagem(idLong).cadastraParticipante(getUsuarioLogado(),
-					codigoDeAcesso);
+			v.cadastraParticipante(getUsuarioLogado(), codigoDeAcesso);
 		} catch (Exception e) {
-			return okErroCadastrarParticipante(idLong, e.getMessage());
+			return okErroCadastrarParticipante(v, e.getMessage());
 		}
-		
-		salvaObjeto(getViagem(idLong));
 
-		return ok(views.html.viagemInfo.render(getUsuarioLogado(),
-				getViagem(idLong), ""));
+		salvaObjeto(v);
+
+		return showViagem(idViagem);
 	}
 
 	@Transactional
