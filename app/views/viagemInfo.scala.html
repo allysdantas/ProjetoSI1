@@ -1,0 +1,119 @@
+@(user: Usuario, viagem: models.viagem.Viagem, mensagem: String)
+
+@main("Viagens Sem Fronteiras") {
+
+<!-- Barra De Navegação -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+			data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span> <span
+			class="icon-bar"></span> <span class="icon-bar"></span> <span
+			class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="/">Viagens CsF</a>
+	</div>
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/sobre">Sobre</a></li>
+			<li><a href="/contato">Contato</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<button class="btn btn-danger navbar-btn"
+				onclick="location.href='/logout'">
+				<span class="glyphicon glyphicon-log-out"></span>
+			</button>
+		</li>
+	</ul>
+</div>
+</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<!-- Informacoes do viajante -->
+		<div class="col-md-5">
+			<br /> <br /> <br /> <br />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sobre a Viagem</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">País:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="pais" value="@viagem.getLocal().getPais()" disabled>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Estado</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="estado" value="@viagem.getLocal().getEstado()" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Cidade</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="cidade" value="@viagem.getLocal().getCidade()" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Endereço</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="endereco" value="@viagem.getLocal().getEndereco()" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Referência</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="referencia"
+							value="@viagem.getLocal().getReferencia()" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Data</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="data" value="@viagem.dataDaViagem()" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Descrição</label>
+						<div class="col-sm-9">
+							<input class="form-control" name="descricao" value="@viagem.getDescricao()" disabled></textarea>
+							<div class="col-sm-10"></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">País:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="pais" value="@viagem.getTipo().toString()" disabled>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	@if(mensagem != null && !mensagem.trim().equals("")) {
+	<br />
+	<div class="alert alert-danger">
+		<p>@(mensagem)</p>
+	</div>
+}
+</div>
+<div class="col-md-7">
+	<br /> <br /> <br /> <br />
+
+
+</div>
+
+</div>
+
+</div>
+
+
+}

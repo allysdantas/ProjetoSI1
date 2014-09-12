@@ -184,6 +184,10 @@ public class Viagem {
 		return id;
 	}
 
+	public String getIdString() {
+		return "" + id;
+	}
+
 	public void setId(long id) {
 		this.id = id;
 	}

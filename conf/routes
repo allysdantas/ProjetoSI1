@@ -7,7 +7,7 @@ GET    /               controllers.Application.index()
 GET    /logout         controllers.Autenticacao.logout()
 
 # Viagem
-GET    /viagem         controllers.Application.index()
+GET    /viagem         controllers.Application.showViagem(String)
 POST   /viagem         controllers.Application.criarViagem()
 
 # Login

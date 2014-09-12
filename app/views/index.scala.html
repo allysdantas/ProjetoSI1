@@ -2,121 +2,88 @@
 
 @main("Viagens Sem Fronteiras") {
 
-@modalCriarViagem() @modalViagem()
+@modalCriarViagem()
 
+<!-- Barra De Navegação -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+			data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span> <span
+			class="icon-bar"></span> <span class="icon-bar"></span> <span
+			class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="/">Viagens CsF</a>
+	</div>
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/sobre">Sobre</a></li>
+			<li><a href="/contato">Contato</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<button class="btn btn-danger navbar-btn"
+				onclick="location.href='/logout'">
+				<span class="glyphicon glyphicon-log-out"></span>
+			</button>
+		</li>
+	</ul>
+</div>
+</div>
+</div>
 
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-            data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span> <span
-            class="icon-bar"></span> <span class="icon-bar"></span> <span
-            class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">Viagens CsF</a>
-    </div>
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li><a href="/sobre">Sobre</a></li>
-            <li><a href="/contato">Contato</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <button class="btn btn-danger navbar-btn"
-                onclick="location.href='/logout'">
-                <span class="glyphicon glyphicon-log-out"></span>
-            </button>
-        </li>
-    </ul>
-</div>
-<!--/.nav-collapse -->
-</div>
-
-</div>
 <div class="container">
-
-    <div class="row">
-        <!-- Informacoes do viajante -->
-        <div class="col-md-4">
-            <br /> <br /> <br /> <br />
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Informações do Viajante</h3>
-                </div>
-                <div class="panel-body">
-                    <p>
-                        <label>Nome: @user.getNome</label>
-                    </p>
-                    <p>
-                        <label>Email: @user.getEmail</label>
-                    </p>
-                </div>
-            </div>
-            <button type="button" class="btn btn-info btn-lg btn-block"
-            data-toggle="modal" data-target="#modalCriarViagem">Criar
-            nova Viagem</button>
-            @if(mensagem != null && !mensagem.trim().equals("")) {
-            <br />
-            <div class="alert alert-danger">
-                <p>@(mensagem)</p>
-            </div>
-        }
-    </div>
-
-    <!-- Lista de viagens -->
-    <div class="col-md-8">
-        <br /> <br /> <br /> <br />
-        <div class="list-group">
-        @for(viagem <- viagens) {
-          @if(viagem.isParticipante(user)){
-          <a class="list-group-item active clica-viagem" >
-          <h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4>
-          <p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem()</p>
-     		<div class="viagem-info">
-				<p>@viagem.getLocal().getPais()</p>
-				<p>@viagem.getLocal().getEstado()</p>
-				<p>@viagem.getLocal().getCidade()</p>
-				<p>@viagem.getLocal().getEndereco()</p>
-				<p>@viagem.getLocal().getReferencia()</p>
-				<p>@viagem.dataDaViagem()</p>
-				<p>@viagem.getDescricao()</p>
-				<p>@viagem.getTipo()</p>
+	<div class="row">
+		<!-- Informacoes do viajante -->
+		<div class="col-md-4">
+			<br /> <br /> <br /> <br />
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Informações do Viajante</h3>
+				</div>
+				<div class="panel-body">
+					<p>
+						<label>Nome: @user.getNome</label>
+					</p>
+					<p>
+						<label>Email: @user.getEmail</label>
+					</p>
+				</div>
 			</div>
-     	 </a>
-      	
-      }else {
-      <a class="list-group-item clica-viagem" >
-          <h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4>
-          <p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem()</p>
-	 		<div class="viagem-info">
-				<p>@viagem.getLocal().getPais()</p>
-				<p>@viagem.getLocal().getEstado()</p>
-				<p>@viagem.getLocal().getCidade()</p>
-				<p>@viagem.getLocal().getEndereco()</p>
-				<p>@viagem.getLocal().getReferencia()</p>
-				<p>@viagem.dataDaViagem()</p>
-				<p>@viagem.getDescricao()</p>
-				<p>@viagem.getTipo()</p>
+			<button type="button" class="btn btn-info btn-lg btn-block"
+			data-toggle="modal" data-target="#modalCriarViagem">Criar
+			nova Viagem</button>
+			@if(mensagem != null && !mensagem.trim().equals("")) {
+			<br />
+			<div class="alert alert-danger">
+				<p>@(mensagem)</p>
 			</div>
-    
-      </a>
-      }
-      }
-  </div>
-</div>
-</div>
-</div>
+		}
+	</div>
 
-<script>
-	$(function(){
-		$(".viagem-info").hide();
-		$(".clica-viagem").click(function(){
-			var info = $(this).find(".viagem-info");
-			$("#modalViagem").data("viagem", info);
-			$("#modalViagem").modal("show");
-		});		
-	});
-</script>
+	<!-- Lista de viagens -->
+	<div class="col-md-8">
+		<br /> <br /> <br /> <br />
+		<div class="list-group">
+			@for(viagem <- viagens) {
+			@if(viagem.isParticipante(user)){
+			<a class="list-group-item active" method="get" onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">
+				<h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4> 
+				<p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem() <span class="label label-success">@viagem.getTipo().toString()</span></p>
+				
+			</a>
+			
+		}else {
+		<a class="list-group-item" method="get" onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">
+			<h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4> 
+			<p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem() <span class="label label-success">@viagem.getTipo().toString()</span></p>
+		</a>
+	}
+}
+</div>
+</div>
+</div>
+</div>
 
 }	

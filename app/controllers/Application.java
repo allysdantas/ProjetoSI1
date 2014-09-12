@@ -30,17 +30,7 @@ public class Application extends Controller {
 		if (session().get("user") == null) {
 			return redirect(routes.Autenticacao.showLogin());
 		}
-
-		Usuario user = new Usuario();
-		if (dao.findByAttributeName("Usuario", "email", session().get("user"))
-				.size() > 0) {
-			if (dao.findByAttributeName("Usuario", "email",
-					session().get("user")).get(0) != null) {
-				user = (Usuario) dao.findByAttributeName("Usuario", "email",
-						session().get("user")).get(0);
-			}
-		}
-		return ok(views.html.index.render(user, getViagens(), ""));
+		return ok(views.html.index.render(getUsuarioLogado(), getViagens(), ""));
 	}
 
 	@Transactional
@@ -50,12 +40,28 @@ public class Application extends Controller {
 	}
 
 	@Transactional
-	public static Result okErroCriarViagem(Usuario usuario, String mensagem) {
-		return ok(views.html.index.render(usuario, getViagens(), mensagem));
+	public static Result showViagem(String id) {
+		
+		long idLong = Long.parseLong(id);
+		
+		return ok(views.html.viagemInfo.render(getUsuarioLogado(),
+				getViagem(idLong), ""));
+	}
+
+	@Transactional
+	public static Result showSobre() {
+		return ok(views.html.sobre.render());
+
+	}
+
+	@Transactional
+	public static Result okErroCriarViagem(String mensagem) {
+		return ok(views.html.index.render(getUsuarioLogado(), getViagens(), mensagem));
 	}
 
 	@Transactional
 	public static Result criarViagem() {
+
 		Form<Viagem> form = viagemForm.bindFromRequest();
 
 		String pais = form.field("pais").value();
@@ -70,15 +76,13 @@ public class Application extends Controller {
 
 		int[] d = formatarData(data);
 
-		Calendar dataDaViagem = new GregorianCalendar(d[0], d[1], d[2]);
-
 		Local local = null;
 		Viagem viagem = null;
 		TipoDeViagem tipoDeViagem = null;
-		Usuario organizador = null;
+
 		try {
-			organizador = (Usuario) dao.findByAttributeName("Usuario", "email",
-					session().get("user")).get(0);
+			Calendar dataDaViagem = new GregorianCalendar(d[0], d[1], d[2]);
+			
 			local = new Local(pais, estado, cidade, endereco, referencia);
 
 			if (tipo.equals("aberta")) {
@@ -87,10 +91,11 @@ public class Application extends Controller {
 				tipoDeViagem = new ViagemLimitada(codigo);
 			}
 
-			viagem = new Viagem(organizador, local, dataDaViagem, descricao,
+			viagem = new Viagem(getUsuarioLogado(), local, dataDaViagem, descricao,
 					tipoDeViagem);
+
 		} catch (Exception e) {
-			return okErroCriarViagem(organizador, e.getMessage());
+			return okErroCriarViagem(e.getMessage());
 		}
 
 		salvaObjeto(local);
@@ -101,9 +106,21 @@ public class Application extends Controller {
 	}
 
 	@Transactional
-	public static Result showSobre() {
-		return ok(views.html.sobre.render());
+	protected static void salvaObjeto(Object obj) {
+		dao.persist(obj);
+		dao.merge(obj);
+		dao.flush();
+	}
 
+	private static Usuario getUsuarioLogado() {
+		Usuario user = new Usuario();
+		if (listaUsuariosLogados().size() > 0) {
+			if (listaUsuariosLogados().get(0) != null) {
+				user = (Usuario) dao.findByAttributeName("Usuario", "email",
+						session().get("user")).get(0);
+			}
+		}
+		return user;
 	}
 
 	private static int[] formatarData(String data) {
@@ -114,11 +131,9 @@ public class Application extends Controller {
 		return new int[] { ano, mes, dia };
 	}
 
-	@Transactional
-	protected static void salvaObjeto(Object obj) {
-		dao.persist(obj);
-		dao.merge(obj);
-		dao.flush();
+	private static List<Usuario> listaUsuariosLogados() {
+		return dao.findByAttributeName("Usuario", "email", session()
+				.get("user"));
 	}
 
 	private static List<Viagem> getViagens() {
@@ -127,5 +142,9 @@ public class Application extends Controller {
 			viagens = new ArrayList<Viagem>();
 		}
 		return viagens;
+	}
+
+	private static Viagem getViagem(Long id) {
+		return dao.findByEntityId(Viagem.class, id);
 	}
 }
