@@ -110,6 +110,22 @@ public class Viagem {
 		isTipoDeViagemValido(tipo);
 	}
 
+	public String getIdString() {
+		return "" + id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getCodigoDeAcesso() {
+		return this.tipo.getCodigo();
+	}
+
+	public void setCodigoDeAcesso(String codigo) throws Exception {
+		this.tipo.setCodigo(codigo);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -182,14 +198,6 @@ public class Viagem {
 
 	public long getId() {
 		return id;
-	}
-
-	public String getIdString() {
-		return "" + id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 }
