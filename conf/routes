@@ -6,9 +6,12 @@
 GET    /               controllers.Application.index()
 GET    /logout         controllers.Autenticacao.logout()
 
-# Viagem
+# Criar Viagem
 GET    /viagem         controllers.Application.showViagem(String)
 POST   /viagem         controllers.Application.criarViagem()
+
+# Participar Viagem
+POST   /viagem         controllers.Application.participarDaViagem(String)
 
 # Login
 GET    /login          controllers.Autenticacao.showLogin()

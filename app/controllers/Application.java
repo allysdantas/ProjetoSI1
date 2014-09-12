@@ -41,9 +41,36 @@ public class Application extends Controller {
 
 	@Transactional
 	public static Result showViagem(String id) {
-		
+
 		long idLong = Long.parseLong(id);
+
+		return ok(views.html.viagemInfo.render(getUsuarioLogado(),
+				getViagem(idLong), ""));
+	}
+	
+	@Transactional
+	public static Result okErroCadastrarParticipante(Long idLong, String mensagem) {
+		return ok(views.html.viagemInfo.render(getUsuarioLogado(),
+				getViagem(idLong), ""));
+	}
+
+	@Transactional
+	public static Result participarDaViagem(String id) {
+
+		long idLong = Long.parseLong(id);
+
+		Form<Viagem> form = viagemForm.bindFromRequest();
+		String codigoDeAcesso = form.field("codigo").value();
+
+		try {
+			getViagem(idLong).cadastraParticipante(getUsuarioLogado(),
+					codigoDeAcesso);
+		} catch (Exception e) {
+			return okErroCadastrarParticipante(idLong, e.getMessage());
+		}
 		
+		salvaObjeto(getViagem(idLong));
+
 		return ok(views.html.viagemInfo.render(getUsuarioLogado(),
 				getViagem(idLong), ""));
 	}
@@ -56,7 +83,8 @@ public class Application extends Controller {
 
 	@Transactional
 	public static Result okErroCriarViagem(String mensagem) {
-		return ok(views.html.index.render(getUsuarioLogado(), getViagens(), mensagem));
+		return ok(views.html.index.render(getUsuarioLogado(), getViagens(),
+				mensagem));
 	}
 
 	@Transactional
@@ -82,7 +110,7 @@ public class Application extends Controller {
 
 		try {
 			Calendar dataDaViagem = new GregorianCalendar(d[0], d[1], d[2]);
-			
+
 			local = new Local(pais, estado, cidade, endereco, referencia);
 
 			if (tipo.equals("aberta")) {
@@ -91,8 +119,8 @@ public class Application extends Controller {
 				tipoDeViagem = new ViagemLimitada(codigo);
 			}
 
-			viagem = new Viagem(getUsuarioLogado(), local, dataDaViagem, descricao,
-					tipoDeViagem);
+			viagem = new Viagem(getUsuarioLogado(), local, dataDaViagem,
+					descricao, tipoDeViagem);
 
 		} catch (Exception e) {
 			return okErroCriarViagem(e.getMessage());
