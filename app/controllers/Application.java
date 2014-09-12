@@ -94,6 +94,12 @@ public class Application extends Controller {
 		return ok(views.html.index.render(getUsuarioLogado(), getViagens(),
 				mensagem));
 	}
+	
+	@Transactional
+	public static Result okErroEditarViagem(Viagem viagem, String mensagem) {
+		return ok(views.html.edicaoViagem.render(getUsuarioLogado(), viagem,
+				mensagem));
+	}
 
 	@Transactional
 	public static Result criarViagem() {
@@ -133,12 +139,80 @@ public class Application extends Controller {
 		} catch (Exception e) {
 			return okErroCriarViagem(e.getMessage());
 		}
-
 		salvaObjeto(local);
 		salvaObjeto(tipoDeViagem);
 		salvaObjeto(viagem);
 
 		return index();
+	}
+	
+	@Transactional
+	public static Result editarViagem() {
+		Form<Viagem> form = viagemForm.bindFromRequest();
+		
+		String idViagem = form.field("id-viagem").value();
+
+		long id = Long.parseLong(idViagem);
+		
+		Viagem viagem = getViagem(id);
+
+		String pais = form.field("pais").value();
+		String estado = form.field("estado").value();
+		String cidade = form.field("cidade").value();
+		String endereco = form.field("endereco").value();
+		String referencia = form.field("referencia").value();
+		String data = form.field("data").value();
+		String descricao = form.field("descricao").value();
+		String tipo = form.field("tipoDeViagem").value();
+		String codigo = form.field("codigo").value();
+		
+		TipoDeViagem tipoDeViagem = null;
+		Calendar dataDaViagem = null;
+		try {
+			if (!isVazio(pais)) {
+				viagem.getLocal().setPais(pais);
+			}
+			if (!isVazio(estado)) {
+				viagem.getLocal().setEstado(estado);
+			}
+			if (!isVazio(cidade)) {
+				viagem.getLocal().setCidade(cidade);
+			}
+			if (!isVazio(endereco)) {
+				viagem.getLocal().setEndereco(endereco);
+			}
+			if (!isVazio(referencia)) {
+				viagem.getLocal().setReferencia(referencia);
+			}
+			if (!isVazio(data)) {
+				int[] d = formatarData(data);
+				dataDaViagem = new GregorianCalendar(d[0], d[1], d[2]);
+				salvaObjeto(dataDaViagem);
+				viagem.setData(dataDaViagem);
+			}
+			if (!isVazio(descricao)) {
+				viagem.setDescricao(descricao);
+			}
+			if (!isVazio(tipo)) {
+				if (tipo.equals("aberta")) {
+					tipoDeViagem = new ViagemAberta();
+				} else if (tipo.equals("limitada")) {
+					tipoDeViagem = new ViagemLimitada(codigo);
+				}
+				salvaObjeto(tipoDeViagem);
+				viagem.setTipo(tipoDeViagem);
+			}
+			
+		} catch (Exception e) {
+			return okErroEditarViagem(viagem, e.getMessage());
+		}
+		salvaObjeto(viagem);
+		
+		return showViagem(idViagem);
+	}
+
+	private static boolean isVazio(String str) {
+		return str == null || str.trim().equals("");
 	}
 
 	@Transactional

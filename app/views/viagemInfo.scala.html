@@ -7,28 +7,28 @@
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target=".navbar-collapse">
-			<span class="sr-only">Toggle navigation</span> <span
-			class="icon-bar"></span> <span class="icon-bar"></span> <span
-			class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="/">Viagens CsF</a>
-	</div>
-	<div class="navbar-collapse collapse">
-		<ul class="nav navbar-nav">
-			<li><a href="/sobre">Sobre</a></li>
-			<li><a href="/contato">Contato</a></li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li>
-				<button class="btn btn-danger navbar-btn"
-				onclick="location.href='/logout'">
-				<span class="glyphicon glyphicon-log-out"></span>
+				data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
 			</button>
-		</li>
-	</ul>
-</div>
-</div>
+			<a class="navbar-brand" href="/">Viagens CsF</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/sobre">Sobre</a></li>
+				<li><a href="/contato">Contato</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<button class="btn btn-danger navbar-btn"
+						onclick="location.href='/logout'">
+						<span class="glyphicon glyphicon-log-out"></span>
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 <div class="container">
@@ -42,88 +42,85 @@
 						<span class="glyphicon glyphicon-circle-arrow-left"> Voltar
 						</span>
 					</button>
+					@if(viagem.getOrganizador().equals(user)) {
+					<button class="btn btn-warning" method="get"
+						onclick="location.href='@routes.Application.showEditar(viagem.getIdString())'">
+						Editar</button>
+					}
 				</div>
 				<div class="panel-body">
-					
-					<p><b>País:</b> @viagem.getLocal().getPais()</p>
-					<p><b>Estado:</b> @viagem.getLocal().getEstado()</p>
-					<p><b>Cidade:</b> @viagem.getLocal().getCidade()</p>
-					<p><b>Endereço:</b> @viagem.getLocal().getEndereco()</p>
-					<p><b>Referência:</b> @viagem.getLocal().getReferencia()</p>
-					<p><b>Data:</b> @viagem.dataDaViagem()</p>
-					<p><b>Descrição:</b> @viagem.getDescricao()</p>
-					<p><b>Tipo:</b> @viagem.getTipo().toString()</p>
+
+					<p>
+						<b>País:</b> @viagem.getLocal().getPais()
+					</p>
+					<p>
+						<b>Estado:</b> @viagem.getLocal().getEstado()
+					</p>
+					<p>
+						<b>Cidade:</b> @viagem.getLocal().getCidade()
+					</p>
+					<p>
+						<b>Endereço:</b> @viagem.getLocal().getEndereco()
+					</p>
+					<p>
+						<b>Referência:</b> @viagem.getLocal().getReferencia()
+					</p>
+					<p>
+						<b>Data:</b> @viagem.dataDaViagem()
+					</p>
+					<p>
+						<b>Descrição:</b> @viagem.getDescricao()
+					</p>
+					<p>
+						<b>Tipo:</b> @viagem.getTipo().toString()
+					</p>
 				</div>
-				@helper.form(routes.Application.participarDaViagem) {
-					@if(!viagem.isParticipante(user)){
-				<form class="form-horizontal" role="form">
-					@if(viagem.getTipo().toString().equals("Limitada")){
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Código:</label>
-						<div class="col-sm-9">
-							<input class="form-control" name="codigo"
-							placeholder="Digite o código de acesso" required>
-						</div>
-					</div>
-				}else{
-				<div class="form-group form-hide">
-					<div class="col-sm-9">
-						<input name="codigo" class="form-control">
-					</div>
-				</div>
-			}
-			<div class="form-group form-hide">
-				<input class="form-control" name="id-viagem" value="@viagem.getIdString()">
 			</div>
-			<button type="submit" class="btn btn-warning" onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">Participar</button>
-	</form>
-	}
-}
-
-</div>
-@if(mensagem != null && !mensagem.trim().equals("")) { <br />
-<div class="alert alert-danger">
-	<p>@(mensagem)</p>
-</div>
-}
-</div>
-
-
-<<<<<<< HEAD
-<div class="col-md-7">
-	<div class="panel panel-default">
-		<div class="panel-body">
-			<table class="table">
-				<thead>
-					<tr>Veja quem já está participando dessa viagem:
-					</tr>
-					<tr>
-						<th>Nome</th>
-						<th>Email</th>
-					</tr>
-				</thead>
-				<tbody>
-					@for(usuario <- viagem.getParticipantes()) {
-					<tr>
-						<td>@usuario.getNome()</td>
-						<td>@usuario.getEmail()</td>
-					</tr>
-				}
-			</tbody>
-		</table>
-=======
-		@if(mensagem != null && !mensagem.trim().equals("")) { <br />
-		<div class="alert alert-danger">
-			<p>@(mensagem)</p>
-		</div>
-		}
-		<div class="col-md-7">
+			@if(!viagem.isParticipante(user)){
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<table class="table">
+					@helper.form(routes.Application.participarDaViagem) {
+					<form class="form-horizontal" role="form">
+						@if(viagem.getTipo().toString().equals("Limitada")){
+						<div class="form-group">
+							<input class="form-control" name="codigo"
+								placeholder="Digite o código de acesso" required>
+						</div>
+						}else{
+						<div class="form-group form-hide">
+							<div class="col-sm-9">
+								<input name="codigo" class="form-control">
+							</div>
+						</div>
+						}
+						<div class="form-group form-hide">
+							<input class="form-control" name="id-viagem"
+								value="@viagem.getIdString()">
+						</div>
+						<button type="submit" class="btn btn-success"
+							style="float: right;"
+							onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">Participar</button>
+					</form>
+					}
+
+				</div>
+			</div>
+			}
+
+			@if(mensagem != null && !mensagem.trim().equals("")) { <br />
+			<div class="alert alert-danger">
+				<p>@(mensagem)</p>
+			</div>
+			}
+		</div>
+
+		<div class="col-md-7">
+			<div class="panel panel-default">
+				<div class="panel-heading">Veja quem já está participando
+					dessa viagem:</div>
+				<div class="panel-body">
+					<table class="table table-hover">
 						<thead>
-							<tr>Veja quem já está participando dessa viagem:
-							</tr>
 							<tr>
 								<th>Nome</th>
 								<th>Email</th>
@@ -140,18 +137,7 @@
 					</table>
 				</div>
 			</div>
-			<button class="btn btn-warning" method="get" onclick="location.href='@routes.Application.showEditar(viagem.getIdString())'"> Editar</button>
 		</div>
->>>>>>> 005f2aa375c6c31cf9293c440f2e0da6e73ac29e
 	</div>
 </div>
-</div>
-</div>
-</div>
-
-<script>
-$(function() {
-	$(".form-hide").hide();
-});
-</script>
 }

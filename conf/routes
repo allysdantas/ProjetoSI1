@@ -14,7 +14,8 @@ POST   /viagem         controllers.Application.criarViagem()
 POST   /participar     controllers.Application.participarDaViagem()
 
 # Editar Viagem
-GET    /editar		   controllers.Application.showEditar(String)
+GET    /editar         controllers.Application.showEditar(String)
+POST   /editar         controllers.Application.editarViagem()
 
 # Login
 GET    /login          controllers.Autenticacao.showLogin()
