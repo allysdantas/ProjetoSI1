@@ -32,16 +32,19 @@
 </div>
 
 <div class="container">
+	<br /> <br /> <br /> <br />
 	<div class="row">
 		<!-- Informacoes do viajante -->
 		<div class="col-md-5">
-			<br /> <br /> <br /> <br />
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title">Sobre a Viagem</h3>
-				</div>
-				<div class="panel-body">
-					<form class="form-horizontal" role="form">
+					<button class="btn btn-warning"
+					onclick="location.href='/'">
+					<span class="glyphicon glyphicon-circle-arrow-left"> Voltar </span>
+				</button>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" role="form">
 					<div class="form-group">
 						<label class="col-sm-3 control-label">País:</label>
 						<div class="col-sm-9">
@@ -83,7 +86,7 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Descrição</label>
 						<div class="col-sm-9">
-							<input class="form-control" name="descricao" value="@viagem.getDescricao()" disabled></textarea>
+							<input class="form-control" name="descricao" value="@viagem.getDescricao()" disabled>
 							<div class="col-sm-10"></div>
 						</div>
 					</div>
@@ -104,16 +107,29 @@
 		<p>@(mensagem)</p>
 	</div>
 }
-</div>
 <div class="col-md-7">
-	<br /> <br /> <br /> <br />
-
-
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for(usuario <- viagem.getParticipantes()) {
+					<tr>
+						<td>@usuario.getNome()</td>
+						<td>@usuario.getEmail()</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
 </div>
-
 </div>
-
 </div>
-
-
+</div>
+</div>
 }
