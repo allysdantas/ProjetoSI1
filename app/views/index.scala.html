@@ -70,16 +70,27 @@
 			@if(viagem.isParticipante(user)){
 			<a class="list-group-item active" method="get" onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">
 				<h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4> 
-				<p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem() <span class="label label-success">@viagem.getTipo().toString()</span></p>
-				
-			</a>
-			
-		}else {
-		<a class="list-group-item" method="get" onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">
-			<h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4> 
-			<p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem() <span class="label label-success">@viagem.getTipo().toString()</span></p>
-		</a>
-	}
+				<p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem() 
+					@if(viagem.getTipo().toString().equals("Aberta")){
+					<span class="label label-success">@viagem.getTipo().toString()</span>
+				}else{
+				<span class="label label-warning">@viagem.getTipo().toString()</span>
+			}
+		</p>
+	</a>
+
+}else{
+<a class="list-group-item" method="get" onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">
+	<h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4> 
+	<p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem() 
+		@if(viagem.getTipo().toString().equals("Aberta")){
+		<span class="label label-success">@viagem.getTipo().toString()</span>
+	}else{
+	<span class="label label-warning">@viagem.getTipo().toString()</span>
+}
+</p>
+</a>
+}
 }
 </div>
 </div>
