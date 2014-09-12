@@ -38,6 +38,14 @@ public class Application extends Controller {
 		return ok(views.html.contato.render());
 
 	}
+	
+	@Transactional
+	public static Result showEditar(String id) {
+		long idLong = Long.parseLong(id);
+		
+		return ok(views.html.edicaoViagem.render(getUsuarioLogado(), getViagem(idLong), ""));
+
+	}
 
 	@Transactional
 	public static Result showViagem(String id) {

@@ -6,6 +6,9 @@ import models.Usuario;
 
 @Entity
 public class ViagemAberta extends TipoDeViagem {
+	
+	public ViagemAberta() {
+	}
 
 	@Override
 	public void cadastrar(Usuario usuario, String codigoDeAcesso, Viagem viagem)

@@ -89,6 +89,7 @@
 </div>
 
 
+<<<<<<< HEAD
 <div class="col-md-7">
 	<div class="panel panel-default">
 		<div class="panel-body">
@@ -110,6 +111,38 @@
 				}
 			</tbody>
 		</table>
+=======
+		@if(mensagem != null && !mensagem.trim().equals("")) { <br />
+		<div class="alert alert-danger">
+			<p>@(mensagem)</p>
+		</div>
+		}
+		<div class="col-md-7">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<table class="table">
+						<thead>
+							<tr>Veja quem já está participando dessa viagem:
+							</tr>
+							<tr>
+								<th>Nome</th>
+								<th>Email</th>
+							</tr>
+						</thead>
+						<tbody>
+							@for(usuario <- viagem.getParticipantes()) {
+							<tr>
+								<td>@usuario.getNome()</td>
+								<td>@usuario.getEmail()</td>
+							</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<button class="btn btn-warning" method="get" onclick="location.href='@routes.Application.showEditar(viagem.getIdString())'"> Editar</button>
+		</div>
+>>>>>>> 005f2aa375c6c31cf9293c440f2e0da6e73ac29e
 	</div>
 </div>
 </div>
