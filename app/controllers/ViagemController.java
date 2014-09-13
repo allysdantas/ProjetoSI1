@@ -125,7 +125,6 @@ public class ViagemController extends Controller {
 			if (!isVazio(data)) {
 				int[] d = formatarData(data);
 				dataDaViagem = new GregorianCalendar(d[0], d[1], d[2]);
-				Application.salvaObjeto(dataDaViagem);
 				viagem.setData(dataDaViagem);
 			}
 			if (!isVazio(descricao)) {

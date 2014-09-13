@@ -75,33 +75,41 @@
 					</p>
 				</div>
 			</div>
+			
 			@if(!viagem.isParticipante(user)){
 			<div class="panel panel-default">
 				<div class="panel-body">
-					@helper.form(routes.ViagemController.participarDaViagem) {
-					<form class="form-horizontal" role="form">
-						@if(viagem.getTipo().toString().equals("Limitada")){
-						<div class="form-group">
-							<input class="form-control" name="codigo"
-								placeholder="Digite o código de acesso" required>
-						</div>
-						}else{
-						<div class="form-group form-hide">
-							<div class="col-sm-9">
-								<input name="codigo" class="form-control">
-							</div>
-						</div>
-						}
+					<form class="form-horizontal" method="post" id="form-participar-viagem" role="form" action="/participar">
 						<div class="form-group form-hide">
 							<input class="form-control" name="id-viagem"
 								value="@viagem.getIdString()">
 						</div>
-						<button type="submit" class="btn btn-success"
-							style="float: right;"
-							onclick="location.href='@routes.ViagemController.showViagem(viagem.getIdString())'">Participar</button>
+						
+						@if(viagem.getTipo().toString().equals("Limitada")){
+						<div class="form-group">
+						<div class="col-sm-10">
+							<input class="form-control" name="codigo"
+								placeholder="Digite o código de acesso" required>
+								</div>
+								<div class="col-sm-2">
+								<button type="submit" class="btn btn-success" style="float: right;" form="form-participar-viagem">Participar</button>
+								</div>
+						</div>
+						
+						}else{
+						
+						<div class="form-group form-hide">
+							<div class="col-sm-8">
+								<input name="codigo" class="form-control">
+							</div>
+						</div>
+						<button type="submit" class="btn btn-success" style="float: right;" form="form-participar-viagem">Participar</button>
+						
+						}
+						
+						
+						
 					</form>
-					}
-
 				</div>
 			</div>
 			}

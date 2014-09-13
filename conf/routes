@@ -11,6 +11,7 @@ GET    /viagem         controllers.ViagemController.showViagem(x$1)
 POST   /viagem         controllers.ViagemController.criarViagem()
 
 # Participar Viagem
+GET    /participar     controllers.Application.index()
 POST   /participar     controllers.ViagemController.participarDaViagem()
 
 # Editar Viagem
