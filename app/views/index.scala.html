@@ -68,7 +68,7 @@
 		<div class="list-group">
 			@for(viagem <- viagens) {
 			@if(viagem.isParticipante(user)){
-			<a class="list-group-item active" method="get" onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">
+			<a class="list-group-item active" method="get" onclick="location.href='@routes.ViagemController.showViagem(viagem.getIdString())'">
 				<h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4> 
 				<p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem() 
 					@if(viagem.getTipo().toString().equals("Aberta")){
@@ -80,7 +80,7 @@
 	</a>
 
 }else{
-<a class="list-group-item" method="get" onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">
+<a class="list-group-item" method="get" onclick="location.href='@routes.ViagemController.showViagem(viagem.getIdString())'">
 	<h4 class="list-group-item-heading">Destino: @viagem.getLocal().getPais()</h4> 
 	<p class="list-group-item-text">Organizador: @viagem.getOrganizador().getNome(), Data: @viagem.dataDaViagem() 
 		@if(viagem.getTipo().toString().equals("Aberta")){

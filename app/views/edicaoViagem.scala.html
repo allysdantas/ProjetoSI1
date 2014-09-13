@@ -42,13 +42,13 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<button class="btn btn-warning" method="get"
-						onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">
+						onclick="location.href='@routes.ViagemController.showViagem(viagem.getIdString())'">
 						<span class="glyphicon glyphicon-circle-arrow-left"> Voltar
 						</span>
 					</button>
 				</div>
 				<div class="panel-body">
-				@helper.form(routes.Application.editarViagem) {
+				@helper.form(routes.ViagemController.editarViagem) {
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
 							<label class="col-sm-3 control-label">País:</label>
@@ -135,7 +135,7 @@
 							</div>
 						</div>
 						<div>
-					<button type="submit" class="btn btn-success" onclick="location.href='@routes.Application.showEditar(viagem.getIdString())'">Salvar
+					<button type="submit" class="btn btn-success" onclick="location.href='@routes.ViagemController.showEditar(viagem.getIdString())'">Salvar
 						alterações</button>
 						</div>
 				</form>
@@ -149,10 +149,7 @@
 			<p>@(mensagem)</p>
 		</div>
 		}
-		
 		</div>
-		
-
 	</div>
 </div>
 </div>

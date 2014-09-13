@@ -62,7 +62,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Login</div>
 			<div class="panel-body">
-				@helper.form(routes.Autenticacao.autenticar) {
+				@helper.form(routes.AutenticacaoController.autenticar) {
 				<form role="form">
 					<div class="form-group">
 						<input type="email" class="form-control" name="email" value='@form("email").value' placeholder="Digite seu email" required>

@@ -4,26 +4,26 @@
 
 # Home page
 GET    /               controllers.Application.index()
-GET    /logout         controllers.Autenticacao.logout()
+GET    /logout         controllers.AutenticacaoController.logout()
 
 # Criar Viagem
-GET    /viagem         controllers.Application.showViagem(String)
-POST   /viagem         controllers.Application.criarViagem()
+GET    /viagem         controllers.ViagemController.showViagem(x$1)
+POST   /viagem         controllers.ViagemController.criarViagem()
 
 # Participar Viagem
-POST   /participar     controllers.Application.participarDaViagem()
+POST   /participar     controllers.ViagemController.participarDaViagem()
 
 # Editar Viagem
-GET    /editar         controllers.Application.showEditar(String)
-POST   /editar         controllers.Application.editarViagem()
+GET    /editar         controllers.ViagemController.showEditar(x$1)
+POST   /editar         controllers.ViagemController.editarViagem()
 
 # Login
-GET    /login          controllers.Autenticacao.showLogin()
-POST   /login          controllers.Autenticacao.autenticar()
+GET    /login          controllers.AutenticacaoController.showLogin()
+POST   /login          controllers.AutenticacaoController.autenticar()
 
 # Registro
-GET    /cadastro       controllers.Autenticacao.showCadastro()
-POST   /cadastro       controllers.Autenticacao.cadastrar()
+GET    /cadastro       controllers.AutenticacaoController.showCadastro()
+POST   /cadastro       controllers.AutenticacaoController.cadastrar()
 
 # Sobre
 GET    /sobre          controllers.Application.showSobre()              

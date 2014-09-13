@@ -39,12 +39,11 @@
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<button class="btn btn-warning" onclick="location.href='/'">
-						<span class="glyphicon glyphicon-circle-arrow-left"> Voltar
-						</span>
+						<span class="glyphicon glyphicon-circle-arrow-left"> Voltar</span>
 					</button>
 					@if(viagem.getOrganizador().equals(user)) {
 					<button class="btn btn-warning" method="get"
-						onclick="location.href='@routes.Application.showEditar(viagem.getIdString())'">
+						onclick="location.href='@routes.ViagemController.showEditar(viagem.getIdString())'">
 						Editar</button>
 					}
 				</div>
@@ -79,7 +78,7 @@
 			@if(!viagem.isParticipante(user)){
 			<div class="panel panel-default">
 				<div class="panel-body">
-					@helper.form(routes.Application.participarDaViagem) {
+					@helper.form(routes.ViagemController.participarDaViagem) {
 					<form class="form-horizontal" role="form">
 						@if(viagem.getTipo().toString().equals("Limitada")){
 						<div class="form-group">
@@ -99,7 +98,7 @@
 						</div>
 						<button type="submit" class="btn btn-success"
 							style="float: right;"
-							onclick="location.href='@routes.Application.showViagem(viagem.getIdString())'">Participar</button>
+							onclick="location.href='@routes.ViagemController.showViagem(viagem.getIdString())'">Participar</button>
 					</form>
 					}
 

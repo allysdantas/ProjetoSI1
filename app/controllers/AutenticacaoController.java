@@ -12,7 +12,7 @@ import play.mvc.Result;
 import play.data.Form;
 import play.db.jpa.Transactional;
 
-public class Autenticacao extends Controller {
+public class AutenticacaoController extends Controller {
 
 	private static GenericDAO dao = new GenericDAOImpl();
 	private static Form<Usuario> usuarioForm = form(Usuario.class)
