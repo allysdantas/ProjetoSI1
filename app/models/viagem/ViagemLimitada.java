@@ -21,7 +21,7 @@ public class ViagemLimitada extends TipoDeViagem {
 	@Override
 	public void cadastrar(Usuario usuario, String codigoDeAcesso, Viagem viagem)
 			throws Exception {
-		if (codigoDeAcesso.equals(getCodigo())) {
+		if (!codigoDeAcesso.equals(getCodigo())) {
 			throw new Exception("Código inválido");
 		}
 		viagem.getListaParticipantes().add(usuario);
