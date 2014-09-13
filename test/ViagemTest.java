@@ -17,7 +17,7 @@ public class ViagemTest {
 	private static final String DESCRICAO = "Vamos visitar a igreja onde foi gravadas varias cenas do filme o Auto da Compadecida";
 	private Usuario allys, mariazinha, joaquim, chiquinha;
 	private Local roliude;
-	private Viagem viagem1, viagem2, viagem3;
+	private Viagem viagem1, viagem2;
 	private TipoDeViagem viagemAberta, viagemLimitada;
 
 	@Before
@@ -32,7 +32,6 @@ public class ViagemTest {
 		viagemLimitada = new ViagemLimitada("0811");
 		viagem1 = new Viagem(mariazinha, roliude, Calendar.getInstance(), "Perto da feira", viagemAberta);
 		viagem2 = new Viagem(allys, roliude, Calendar.getInstance(), "Perto de algum lugar", viagemLimitada);
-		viagem3 = new Viagem(joaquim, roliude, Calendar.getInstance(), "perto da casa de carlos", viagemAberta);
 	}
 
 	@Test
@@ -41,30 +40,51 @@ public class ViagemTest {
 		assertEquals(viagem1.getParticipantes().size(), 0);
 		
 		try {
-			viagem1.cadastraParticipante(joaquim, "");;
+			viagem1.cadastraParticipante(mariazinha, "");;
 		} catch (Exception e) {	}
 		
 		assertEquals(viagem1.getParticipantes().size(), 1);
-		assertFalse(viagem2.isParticipante(joaquim));			
+		assertFalse(viagem1.isParticipante(joaquim));			
 		assertTrue(viagem1.getCodigoDeAcesso().equals(""));
-		assertTrue(viagem1.isParticipante(joaquim));
-		assertFalse(viagem1.isParticipante(allys));	
+		assertTrue(viagem1.isParticipante(mariazinha));
+		assertFalse(viagem1.isParticipante(allys));
+		
+
+		try {
+			viagem1.cadastraParticipante(joaquim, "1");;
+		} catch (Exception e) {	}
+		
+		assertEquals(viagem1.getParticipantes().size(), 2);		
 	}
 
 	@Test
 	public void deveAdicionarParticipanteNaViagemLimitada() {
 		
 		assertEquals(viagem2.getParticipantes().size(), 0);
-		//verificar quando o codigo é diferente
+		
 		try {
-			viagem2.cadastraParticipante(mariazinha, "0811");
+			viagem2.cadastraParticipante(allys, "0811");
 		} catch (Exception e) {	}
 		
-		assertTrue(viagem2.isParticipante(mariazinha));
-		assertFalse(viagem2.isParticipante(allys));
 		assertEquals(viagem2.getParticipantes().size(), 1);
+		
+		try{
+			viagem2.cadastraParticipante(allys, "08124");
+		} catch(Exception e){
+			assertEquals("Código inválido", e.getMessage());
+		}
+		
+		assertEquals(viagem2.getParticipantes().size(), 1);
+		
+		try {
+			viagem2.cadastraParticipante(chiquinha, "0811");
+		} catch (Exception e) {	}
+		
+		assertTrue(viagem2.isParticipante(allys));
+		assertFalse(viagem2.isParticipante(mariazinha));
 		assertTrue(viagem2.getCodigoDeAcesso().equals("0811"));
 		assertFalse(viagem2.getCodigoDeAcesso().equals("08111"));
+		assertEquals(viagem2.getParticipantes().size(), 2);
 	}
 
 	@Test
@@ -121,18 +141,9 @@ public class ViagemTest {
 	@Test
 	public void naoDeveAceitarDataInvalida() {
 		try {
-			new Viagem(allys, roliude, null, DESCRICAO, new ViagemAberta());
+			new Viagem(allys, roliude, null, DESCRICAO, viagemAberta);
 		} catch (Exception e) {
 			assertEquals("Data não pode ser nula", e.getMessage());
-		}
-		
-		try{
-			Calendar calendar = Calendar.getInstance();
-			calendar.add(Calendar.DAY_OF_WEEK, -1);
-			
-			new Viagem(allys, roliude, Calendar.getInstance(), DESCRICAO, new ViagemAberta());
-		} catch(Exception e){
-			assertEquals("Data não pode ser a anterior", e.getMessage());
 		}
 	}
 
