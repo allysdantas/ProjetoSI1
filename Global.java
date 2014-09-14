@@ -47,10 +47,13 @@ public class Global extends GlobalSettings {
 		JPA.withTransaction(new play.libs.F.Callback0() {
 			@Override
 			public void invoke() throws Throwable {
-				List<Usuario> usuarios = criaUsuariosFake(40);
-				List<Local> locais = criaLocaisFake(30);
-				List<Viagem> viagens = criarViagensFakes(30, usuarios, locais);
-				criarParticipacoesFake(100,usuarios, viagens);
+				if (!(dao.findAllByClassName("Viagem").size() > 0)) {
+					List<Usuario> usuarios = criaUsuariosFake(40);
+					List<Local> locais = criaLocaisFake(30);
+					List<Viagem> viagens = criarViagensFakes(30, usuarios,
+							locais);
+					criarParticipacoesFake(100, usuarios, viagens);
+				}
 			}
 
 			public String getNomeAleatorio() {
@@ -108,10 +111,10 @@ public class Global extends GlobalSettings {
 
 					TipoDeViagem aberta = new ViagemAberta();
 					TipoDeViagem limitada = new ViagemLimitada(codigo);
-					
+
 					salvaObjeto(aberta);
 					salvaObjeto(limitada);
-					
+
 					tipo.add(aberta);
 					tipo.add(limitada);
 
@@ -155,13 +158,13 @@ public class Global extends GlobalSettings {
 				return calendar;
 			}
 
-			public void criarParticipacoesFake(int quantidade, List<Usuario> usuarios,
-					List<Viagem> viagens) {
+			public void criarParticipacoesFake(int quantidade,
+					List<Usuario> usuarios, List<Viagem> viagens) {
 				for (int i = 0; i < quantidade; i++) {
 					cadastrarParticipante(getUsuarioAleatorio(usuarios),
 							viagens.get(rnd.nextInt(viagens.size())));
 				}
-				
+
 			}
 
 			private void cadastrarParticipante(Usuario participante,
