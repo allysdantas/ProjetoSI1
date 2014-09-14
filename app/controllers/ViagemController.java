@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import models.Local;
+import models.Usuario;
 import models.viagem.TipoDeViagem;
 import models.viagem.Viagem;
 import models.viagem.ViagemAberta;
@@ -158,10 +159,12 @@ public class ViagemController extends Controller {
 
 		long id = Long.parseLong(idViagem);
 		Viagem v = getViagem(id);
+		Usuario participante = Application.getUsuarioLogado();
 
 		try {
-			v.cadastraParticipante(Application.getUsuarioLogado(),
-					codigoDeAcesso);
+			if (!v.isParticipante(participante)) {
+				v.cadastraParticipante(participante, codigoDeAcesso);
+			}
 		} catch (Exception e) {
 			return okErroCadastrarParticipante(v, e.getMessage());
 		}

@@ -173,6 +173,9 @@ public class Viagem {
 		if (data == null) {
 			throw new Exception("Data não pode ser nula");
 		}
+		if (data.compareTo(Calendar.getInstance()) <= 0) {
+			throw new Exception("Ainda não existe viagem para o passado");
+		}
 		this.data = data;
 	}
 

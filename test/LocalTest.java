@@ -58,7 +58,7 @@ public class LocalTest {
 		assertTrue(l1.equals(l2));
 
 		Local l3 = new Local("Inglaterra", "Grande Londres", "Londres",
-				"Rua dos Alfineiros, nº4", "Casa dos tios de Harry Potter");
+				"Rua dos Alfineiros, nº5", "Casa dos tios de Harry");
 
 		assertFalse(l1.equals(l3));
 
