@@ -66,5 +66,62 @@ public class LocalTest {
 
 		assertFalse(l1.equals(l2));
 	}
+	
+	@Test
+	public void naoDeveAceitarPaisInvalido() {
+		try {
+			new Local(null, "Paraíba", "Nova Palmeira", "Rua Almiza Rosa",
+					"");
+			fail("Deveria dar erro no país");
+		} catch (Exception e) {
+			assertEquals("País não pode ser nulo", e.getMessage());
+		}
+
+		try {
+			new Local("", "Paraíba", "Nova Palmeira", "Rua Almiza Rosa",
+					"");
+			fail("Deveria dar erro no país");
+		} catch (Exception e) {
+			assertEquals("País não pode ser vazio", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void naoDeveAceitarCidadeInvalida() {
+		try {
+			new Local("Brasil", "Paraíba", null, "Rua Almiza Rosa",
+					"");
+			fail("Deveria dar erro na cidade");
+		} catch (Exception e) {
+			assertEquals("Cidade não pode ser nula", e.getMessage());
+		}
+
+		try {
+			new Local("Brasil", "Paraíba", "", "Rua Almiza Rosa",
+					"");
+			fail("Deveria dar erro na cidade");
+		} catch (Exception e) {
+			assertEquals("Cidade não pode ser vazia", e.getMessage());
+		}
+	}
+	
+	@Test
+	public void naoDeveAceitarEstadoInvalido() {
+		try {
+			new Local("Brasil", null, "Nova Palmeira", "Rua Almiza Rosa",
+					"");
+			fail("Deveria dar erro no estado");
+		} catch (Exception e) {
+			assertEquals("Estado não pode ser nulo", e.getMessage());
+		}
+
+		try {
+			new Local("Brasil", "", "Nova Palmeira", "Rua Almiza Rosa",
+					"");
+			fail("Deveria dar erro no estado");
+		} catch (Exception e) {
+			assertEquals("Estado não pode ser vazio", e.getMessage());
+		}
+	}
 
 }
