@@ -162,9 +162,7 @@ public class ViagemController extends Controller {
 		Usuario participante = Application.getUsuarioLogado();
 
 		try {
-			if (!v.isParticipante(participante)) {
-				v.cadastraParticipante(participante, codigoDeAcesso);
-			}
+			v.cadastraParticipante(participante, codigoDeAcesso);
 		} catch (Exception e) {
 			return okErroCadastrarParticipante(v, e.getMessage());
 		}

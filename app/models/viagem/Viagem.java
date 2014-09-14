@@ -63,6 +63,9 @@ public class Viagem {
 
 	public void cadastraParticipante(Usuario participante, String codigoDeAcesso)
 			throws Exception {
+		if (isParticipante(participante)) {
+			throw new Exception("Usuário já está participando da Viagem");
+		}
 		this.tipo.cadastrar(participante, codigoDeAcesso, this);
 	}
 
