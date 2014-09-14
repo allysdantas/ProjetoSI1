@@ -175,7 +175,7 @@ public class ViagemController extends Controller {
 	public static Result okErroCadastrarParticipante(Viagem viagem,
 			String mensagem) {
 		return ok(views.html.viagemInfo.render(Application.getUsuarioLogado(),
-				viagem, ""));
+				viagem, mensagem));
 	}
 
 	@Transactional
