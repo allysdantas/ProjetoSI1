@@ -50,7 +50,7 @@ public class Global extends GlobalSettings {
 				List<Usuario> usuarios = criaUsuariosFake(40);
 				List<Local> locais = criaLocaisFake(30);
 				List<Viagem> viagens = criarViagensFakes(30, usuarios, locais);
-				criarParticipacoesFake(usuarios, viagens);
+				criarParticipacoesFake(100,usuarios, viagens);
 			}
 
 			public String getNomeAleatorio() {
@@ -155,12 +155,13 @@ public class Global extends GlobalSettings {
 				return calendar;
 			}
 
-			public void criarParticipacoesFake(List<Usuario> usuarios,
+			public void criarParticipacoesFake(int quantidade, List<Usuario> usuarios,
 					List<Viagem> viagens) {
-				for (Usuario u : usuarios) {
-					cadastrarParticipante(u,
+				for (int i = 0; i < quantidade; i++) {
+					cadastrarParticipante(getUsuarioAleatorio(usuarios),
 							viagens.get(rnd.nextInt(viagens.size())));
 				}
+				
 			}
 
 			private void cadastrarParticipante(Usuario participante,
